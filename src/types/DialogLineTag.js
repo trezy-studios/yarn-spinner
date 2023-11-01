@@ -4,3 +4,4 @@
  * @property {*} value The value of the tag
  * @property {string} original The original, unparsed tag.
  */
+export const DialogLineTag = {}

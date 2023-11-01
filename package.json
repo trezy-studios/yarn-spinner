@@ -14,6 +14,7 @@
     "url": "https://github.com/trezy-studios/yarn-spinner-xstate.git"
   },
   "scripts": {
+    "generateTypes": "tsc",
     "semantic-release": "semantic-release"
   },
   "files": [
@@ -22,6 +23,7 @@
     "tsconfig.json",
     "types/**/*"
   ],
+  "types": "./types",
   "dependencies": {
     "bbcode-ast": "^1.1.0",
     "uuid": "^9.0.1"

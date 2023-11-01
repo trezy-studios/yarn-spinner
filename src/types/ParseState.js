@@ -4,3 +4,4 @@
  * @property {object} context The machine's context.
  * @property {string[]} validMarkup A list of valid markup tags.
  */
+export const ParseState = {}

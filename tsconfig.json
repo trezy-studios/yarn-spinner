@@ -2,8 +2,12 @@
   "compilerOptions": {
     "allowImportingTsExtensions": true,
     "allowJs": true,
-    "baseUrl": ".",
+    "allowSyntheticDefaultImports": true,
     "checkJs": true,
+    "declaration": true,
+    "declarationDir": "types",
+    "declarationMap": true,
+    "emitDeclarationOnly": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "incremental": true,
@@ -14,9 +18,8 @@
       "dom.iterable",
       "esnext"
     ],
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext",
-    "noEmit": true,
+    "module": "ESNext",
+    "moduleResolution": "Node",
     "outDir": "dist",
     "resolveJsonModule": true,
     "skipLibCheck": true,
@@ -26,15 +29,11 @@
   },
   "include": [
     "src",
-    "**/*.js",
-    "**/*.jsx",
-    "**/*.ts",
-    "**/*.tsx"
+    "**/*.js"
   ],
   "exclude": [
     ".github",
     ".yarn",
-    "node_modules",
-    "**/*.scss"
+    "node_modules"
   ]
 }
