@@ -4,6 +4,11 @@
   "main": "index.js",
   "license": "BSD-3-Clause",
   "type": "module",
+  "author": {
+    "name": "Trezy",
+    "email": "t@trezy.com",
+    "url": "http://trezy.codes"
+  },
   "dependencies": {
     "bbcode-ast": "^1.1.0",
     "uuid": "^9.0.1",
