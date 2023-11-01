@@ -30,5 +30,6 @@
     "eslint-plugin-sort-class-members": "^1.19.0",
     "eslint-plugin-unused-imports": "^3.0.0",
     "typescript": "^5.2.2"
-  }
+  },
+  "packageManager": "yarn@4.0.1"
 }
