@@ -1,6 +1,6 @@
 {
   "name": "yarn-spinner-xstate",
-  "version": "1.0.0",
+  "version": "0.0.0-development",
   "main": "index.js",
   "license": "BSD-3-Clause",
   "type": "module",
@@ -29,7 +29,15 @@
     "eslint-plugin-security": "^1.7.1",
     "eslint-plugin-sort-class-members": "^1.19.0",
     "eslint-plugin-unused-imports": "^3.0.0",
-    "typescript": "^5.2.2"
+    "typescript": "^5.2.2",
+    "semantic-release": "^22.0.6"
   },
-  "packageManager": "yarn@4.0.1"
+  "packageManager": "yarn@4.0.1",
+  "scripts": {
+    "semantic-release": "semantic-release"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/trezy-studios/yarn-spinner-xstate.git"
+  }
 }
