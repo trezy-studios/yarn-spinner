@@ -11,8 +11,7 @@
   },
   "dependencies": {
     "bbcode-ast": "^1.1.0",
-    "uuid": "^9.0.1",
-    "xstate": "^4.38.3"
+    "uuid": "^9.0.1"
   },
   "devDependencies": {
     "@types/node": "^20.8.9",
@@ -35,7 +34,11 @@
     "eslint-plugin-sort-class-members": "^1.19.0",
     "eslint-plugin-unused-imports": "^3.0.0",
     "semantic-release": "^22.0.6",
-    "typescript": "^5.2.2"
+    "typescript": "^5.2.2",
+    "xstate": "^4.38.3"
+  },
+  "peerDependencies": {
+    "xstate": "^4.38.3"
   },
   "packageManager": "yarn@4.0.1",
   "scripts": {
