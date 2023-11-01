@@ -1,8 +1,6 @@
 // Module imports
 import { Parser as BBCodeParser } from 'bbcode-ast'
 import { createMachine } from 'xstate'
-import fs from 'node:fs/promises'
-import path from 'node:path'
 import { v4 as uuid } from 'uuid'
 
 
@@ -321,9 +319,10 @@ export class YarnScript {
 	/**
 	 * Compiles the script to a state machine.
 	 */
-	async parseScript() {
+	parseScript() {
 		const context = this.#context
 		const allNodes = this.parseNodes()
+		const allStates = new Map
 		const machineID = uuid()
 
 		const machineConfig = {
@@ -353,15 +352,24 @@ export class YarnScript {
 
 				if (!parsedLines.has(line.id)) {
 					const lineState = {}
+					let shouldAddState = true
 
 					switch (line.type) {
 						case LINE_TYPES.COMMAND:
 							if (line.commandName === 'jump') {
-								lineState.on = {
+								let previousLineState = allStates.get(contentLines[lineIndex - 1].id)
+
+								if (previousLineState.type === 'parallel') {
+									previousLineState = allStates.get(Object.keys(previousLineState.states)[0])
+								}
+
+								previousLineState.on = {
 									next: {
 										target: `#${machineID}.${line.parameters[0]}`,
 									},
 								}
+
+								shouldAddState = false
 							} else {
 								lineState.entry = {
 									type: line.commandName,
@@ -407,7 +415,8 @@ export class YarnScript {
 										}
 									}
 
-									parsedLines.add(nextLine.id)
+									parsedLines.add(nextLineID)
+									allStates.set(nextLineID, lineState.states[nextLineID])
 								}
 
 								nextLineIndex += 1
@@ -441,7 +450,11 @@ export class YarnScript {
 					}
 
 					parsedLines.add(line.id)
-					node.states[line.id] = lineState
+					allStates.set(line.id, lineState)
+
+					if (shouldAddState) {
+						node.states[line.id] = lineState
+					}
 				}
 
 				lineIndex += 1
@@ -453,8 +466,6 @@ export class YarnScript {
 				machineConfig.initial = node.meta.title
 			}
 		})
-
-		await fs.writeFile(path.join(process.cwd(), 'machineConfig.json'), JSON.stringify(machineConfig, null, 2))
 
 		this.#machine = createMachine(machineConfig)
 	}
