@@ -81,14 +81,21 @@ export function parseScript(script, options) {
 				switch (line.type) {
 					case LINE_TYPES.COMMAND:
 						if (line.commandName === 'jump') {
-							let previousLineState = allStates.get(contentLines[lineIndex - 1].id)
+							let previousLineID = contentLines[lineIndex - 1].id
+							let previousLineState = allStates.get(previousLineID)
+							let nextKey = 'next'
 
 							if (previousLineState.type === 'parallel') {
-								previousLineState = allStates.get(Object.keys(previousLineState.states)[0])
+								previousLineID = Object.keys(previousLineState.states)[0]
+								previousLineState = allStates.get(previousLineID)
+							}
+
+							if (previousLineState.meta.isOption) {
+								nextKey += `::${previousLineID}`
 							}
 
 							previousLineState.on = {
-								next: {
+								[nextKey]: {
 									target: `#${machineID}.${line.parameters[0]}`,
 								},
 							}
@@ -124,6 +131,8 @@ export function parseScript(script, options) {
 									meta: {
 										author: nextLine.author,
 										body: nextLine.body,
+										id: nextLineID,
+										isOption: true,
 										markup: nextLine.markup,
 										tags: nextLine.tags,
 									},
@@ -133,7 +142,7 @@ export function parseScript(script, options) {
 
 								if (nextNextLine) {
 									lineState.states[nextLineID].on = {
-										next: {
+										[`next-${nextLineID}`]: {
 											target: `#${machineID}.${node.meta.title}.${nextNextLine.id}`,
 										},
 									}
@@ -155,6 +164,7 @@ export function parseScript(script, options) {
 						lineState.meta = {
 							author: line.author,
 							body: line.body,
+							id: line.id,
 							markup: line.markup,
 							tags: line.tags,
 						}
