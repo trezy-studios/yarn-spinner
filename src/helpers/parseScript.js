@@ -49,11 +49,21 @@ export function parseScript(script, options) {
 	const allStates = new Map
 	const machineID = uuid()
 
+	const doneState = {
+		meta: {
+			id: uuid(),
+		},
+	}
+
+	doneState.type = 'final'
+
 	const machineConfig = {
 		context,
 		id: machineID,
 		predictableActionArguments: true,
-		states: {},
+		states: {
+			[doneState.meta.id]: doneState,
+		},
 	}
 
 	allNodes.forEach((nodeString, nodeIndex) => {
@@ -178,7 +188,11 @@ export function parseScript(script, options) {
 								},
 							}
 						} else {
-							lineState.type = 'final'
+							lineState.on = {
+								next: {
+									target: `#${machineID}.${doneState.meta.id}`,
+								},
+							}
 						}
 					}
 				}
