@@ -60,7 +60,6 @@ export function parseScript(script, options) {
 	const machineConfig = {
 		context,
 		id: machineID,
-		predictableActionArguments: true,
 		states: {
 			[doneState.meta.id]: doneState,
 		},

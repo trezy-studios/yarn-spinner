@@ -5923,10 +5923,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"xstate@npm:^4.38.3":
-  version: 4.38.3
-  resolution: "xstate@npm:4.38.3"
-  checksum: 8a2063743517390107275113bca0e757dba99102e7d57d40cf656b5cc03a6f2c5e10fbf3752294d9d29fbe1d8757bb9a54f54c934a22f205a237956dd10dcd0f
+"xstate@npm:5.0.0-beta.44":
+  version: 5.0.0-beta.44
+  resolution: "xstate@npm:5.0.0-beta.44"
+  checksum: c599738b4a4a6f067ecd13bfc19b176da853b7aa68ed4552f58954de03ade0811794f5984178b2ba785a42dc22aac12a411ef90c29edb3b98ad3407530318bea
   languageName: node
   linkType: hard
 
@@ -5994,9 +5994,9 @@ __metadata:
     semantic-release: "npm:^22.0.6"
     typescript: "npm:^5.2.2"
     uuid: "npm:^9.0.1"
-    xstate: "npm:^4.38.3"
+    xstate: "npm:5.0.0-beta.44"
   peerDependencies:
-    xstate: ^4.38.3
+    xstate: 5.0.0-beta.44
   languageName: unknown
   linkType: soft
 
