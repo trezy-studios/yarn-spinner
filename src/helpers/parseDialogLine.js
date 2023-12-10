@@ -33,6 +33,7 @@ export function parseDialogLine(line, parseState) {
 	} = traverseBBCodeAST(parsedBody, validMarkup)
 
 	return {
+		ast: parsedBody,
 		author: author,
 		body: dialogLineContent,
 		markup: dialogLineMarkup,

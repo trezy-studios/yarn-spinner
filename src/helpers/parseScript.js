@@ -171,6 +171,7 @@ export function parseScript(script, options) {
 					// case LINE_TYPES.DIALOG:
 					default: {
 						lineState.meta = {
+							ast: line.ast,
 							author: line.author,
 							body: line.body,
 							id: line.id,
