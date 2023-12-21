@@ -6,7 +6,7 @@
  */
 export function parseMeta(metaString) {
 	const lines = metaString
-		.split('\n')
+		.split(/\n/)
 		.filter(Boolean)
 
 	const meta = {}
