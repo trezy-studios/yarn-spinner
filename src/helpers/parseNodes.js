@@ -8,7 +8,7 @@ export function parseNodes(script) {
 	const nodes = []
 
 	const allLines = script
-		.split('\n')
+		.split(/\n/)
 		.filter(Boolean)
 
 	while (allLines.length) {
