@@ -14,7 +14,6 @@ import { log } from './log.js'
 import { parseMeta } from './parseMeta.js'
 import { parseNodeContent } from './parseNodeContent.js'
 import { parseNodes } from './parseNodes.js'
-import { state } from './state.js'
 
 
 
@@ -28,6 +27,8 @@ import { state } from './state.js'
  * @returns {import('xstate').StateMachine} The new state machine.
  */
 export function parseScript(script, options) {
+	log('group', 'parseScript')
+
 	const {
 		context,
 		validMarkup = [],
@@ -67,7 +68,6 @@ export function parseScript(script, options) {
 		},
 	}
 
-	log('group', 'parseScript')
 	log('info', { allNodes })
 
 	allNodes.forEach((nodeString, nodeIndex) => {
