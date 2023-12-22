@@ -19,6 +19,7 @@ export function parseNodes(script) {
 	log('info', { script })
 
 	const allLines = script
+		.replace(/\r/g, '')
 		.split(/\n/)
 		.filter(Boolean)
 
