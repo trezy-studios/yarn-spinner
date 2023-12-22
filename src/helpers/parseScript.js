@@ -68,6 +68,7 @@ export function parseScript(script, options) {
 	}
 
 	log('group', 'parseScript')
+	log('info', { allNodes })
 
 	allNodes.forEach((nodeString, nodeIndex) => {
 		log('group', 'parsing node')
