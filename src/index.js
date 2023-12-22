@@ -1,5 +1,6 @@
 export * from './data/DEFAULT_MARKUP.js'
 export * from './data/LINE_TYPES.js'
+export * from './helpers/enableDebugging.js'
 export * from './helpers/mapTag.js'
 export * from './helpers/parseCommandLine.js'
 export * from './helpers/parseDialogLine.js'
