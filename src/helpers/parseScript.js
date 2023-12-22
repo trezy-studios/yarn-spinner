@@ -67,31 +67,25 @@ export function parseScript(script, options) {
 		},
 	}
 
-	if (state.isDebuggingEnabled) {
-		log('group', 'parseScript')
-	}
+	log('group', 'parseScript')
 
 	allNodes.forEach((nodeString, nodeIndex) => {
-		if (state.isDebuggingEnabled) {
-			log('group', 'parsing node')
-			log('info', {
-				nodeIndex,
-				nodeString,
-			})
-		}
+		log('group', 'parsing node')
+		log('info', {
+			nodeIndex,
+			nodeString,
+		})
 
 		const [metaString, contentString] = nodeString.split('---')
 
-		if (state.isDebuggingEnabled) {
-			log('info', {
-				nodeIndex,
-				nodeString,
+		log('info', {
+			nodeIndex,
+			nodeString,
 
-				metaString,
-				contentString,
-			})
-			log('groupEnd')
-		}
+			metaString,
+			contentString,
+		})
+		log('groupEnd')
 
 		const contentLines = parseNodeContent(contentString, parseState)
 		const parsedLines = new Set
@@ -239,6 +233,8 @@ export function parseScript(script, options) {
 			machineConfig.initial = node.meta.title
 		}
 	})
+
+	log('groupEnd')
 
 	return createMachine(machineConfig)
 }
