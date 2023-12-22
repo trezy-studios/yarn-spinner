@@ -8,7 +8,7 @@ import { state } from './state.js'
 /**
  * Enables debug logging.
  *
- * @param {Console} logger The namespace to use for logging.
+ * @param {Console} [logger] The namespace to use for logging.
  */
 export function enableDebugging(logger) {
 	state.isDebuggingEnabled = true
