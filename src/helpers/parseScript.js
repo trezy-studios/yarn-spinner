@@ -10,9 +10,11 @@ import { v4 as uuid } from 'uuid'
 // Local imports
 import { DEFAULT_MARKUP } from '../data/DEFAULT_MARKUP.js'
 import { LINE_TYPES } from '../data/LINE_TYPES.js'
+import { log } from './log.js'
 import { parseMeta } from './parseMeta.js'
 import { parseNodeContent } from './parseNodeContent.js'
 import { parseNodes } from './parseNodes.js'
+import { state } from './state.js'
 
 
 
@@ -65,8 +67,31 @@ export function parseScript(script, options) {
 		},
 	}
 
+	if (state.isDebuggingEnabled) {
+		log('group', 'parseScript')
+	}
+
 	allNodes.forEach((nodeString, nodeIndex) => {
+		if (state.isDebuggingEnabled) {
+			log('group', 'parsing node')
+			log('info', {
+				nodeIndex,
+				nodeString,
+			})
+		}
+
 		const [metaString, contentString] = nodeString.split('---')
+
+		if (state.isDebuggingEnabled) {
+			log('info', {
+				nodeIndex,
+				nodeString,
+
+				metaString,
+				contentString,
+			})
+			log('groupEnd')
+		}
 
 		const contentLines = parseNodeContent(contentString, parseState)
 		const parsedLines = new Set

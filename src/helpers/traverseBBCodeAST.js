@@ -1,3 +1,10 @@
+// Local imports
+import { log } from './log.js'
+
+
+
+
+
 /**
  * Traverses a BBCode AST to enerate a resulting string and markup dictionary.
  *
@@ -35,7 +42,7 @@ export function traverseBBCodeAST(ast, validMarkup, context) {
 				}
 				context.markup.push(markupData)
 			} else {
-				console.log(`Unrecognised AST node: ${ast.name}`, ast)
+				log('info', `Unrecognised AST node: ${ast.name}`, ast)
 			}
 	}
 
