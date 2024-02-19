@@ -22,6 +22,7 @@ export function parseDialogLine(line, parseState) {
 	const [lineWithoutTags, ...tags] = line
 		.trim()
 		.split('#')
+		.map(item => item.trim())
 
 	const [, author, bodyString] = /^(?:(.*?):\s?)?(.+)$/u.exec(lineWithoutTags)
 
