@@ -15,6 +15,7 @@ import { parseLine } from './parseLine.js'
 export function parseNodeContent(contentString, parseState) {
 	return contentString
 		.split(/\n/)
+		.map(line => line.trim())
 		.filter(Boolean)
 		.map(line => parseLine(line, parseState))
 }
