@@ -18,5 +18,7 @@ export function log(type, ...args) {
 
 	if (type in state.logger) {
 		state.logger[type](...args)
+	} else {
+		state.logger.log(type, ...args)
 	}
 }
