@@ -1,3 +1,10 @@
+// Local imports
+import { parseValue } from './parseValue.js'
+
+
+
+
+
 /**
  * Compiles a meta string to an object.
  *
@@ -15,8 +22,11 @@ export function parseMeta(metaString) {
 
 	while (index < lines.length) {
 		const line = lines[index]
-		const [key, value] = line.split(':')
-		meta[key.trim()] = value.trim()
+
+		if (line) {
+			const [key, value] = line.split(':')
+			meta[key.trim()] = parseValue(value.trim())
+		}
 
 		index += 1
 	}

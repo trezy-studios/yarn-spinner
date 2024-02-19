@@ -1,3 +1,10 @@
+// Local imports
+import { parseValue } from './parseValue.js'
+
+
+
+
+
 /**
  * Parses a command line.
  *
@@ -13,17 +20,7 @@ export function parseCommandLine(line) {
 	const parsedParameters = parameters
 		.split(' ')
 		.filter(Boolean)
-		.map(parameter => {
-			if (!isNaN(parseFloat(parameter))) {
-				return parseFloat(parameter)
-			}
-
-			if (['false', 'true'].includes(parameter)) {
-				return Boolean(parameter)
-			}
-
-			return parameter
-		})
+		.map(parseValue)
 
 	return {
 		commandName,
