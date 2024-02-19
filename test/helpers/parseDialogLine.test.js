@@ -13,8 +13,8 @@ import { parseDialogLine } from '../../src/index.js'
 
 
 
-// Variables
-const bbcodeParser = new BBCodeParser(
+// Constants
+const BBCODE_PARSER = new BBCodeParser(
 	[
 		'bold',
 		'italic',
@@ -33,7 +33,7 @@ describe('parseDialogLine', function() {
 		const body = 'Why hello there! Nice day, isn\'t it?'
 
 		const parsedDialogLine = parseDialogLine(`${author}: ${body}`, {
-			bbcodeParser,
+			bbcodeParser: BBCODE_PARSER,
 			context: {},
 			validMarkup: [],
 		})
@@ -49,7 +49,7 @@ describe('parseDialogLine', function() {
 		const body = 'Why hello there! Nice day, isn\'t it?'
 
 		const parsedDialogLine = parseDialogLine(body, {
-			bbcodeParser,
+			bbcodeParser: BBCODE_PARSER,
 			context: {},
 			validMarkup: [],
 		})
@@ -67,7 +67,7 @@ describe('parseDialogLine', function() {
 		const bodyWithoutMarkup = 'Why hello there! Nice day, isn\'t it?'
 
 		const parsedDialogLine = parseDialogLine(`${author}: ${body}`, {
-			bbcodeParser,
+			bbcodeParser: BBCODE_PARSER,
 			context: {},
 			validMarkup: ['bold'],
 		})
@@ -91,7 +91,7 @@ describe('parseDialogLine', function() {
 		const bodyWithoutMarkup = 'Why hello there! Nice day, isn\'t it?'
 
 		const parsedDialogLine = parseDialogLine(`${author}: ${body}`, {
-			bbcodeParser,
+			bbcodeParser: BBCODE_PARSER,
 			context: {},
 			validMarkup: [
 				'bold',
@@ -144,7 +144,7 @@ describe('parseDialogLine', function() {
 			.join(' ')
 
 		const parsedDialogLine = parseDialogLine(`${author}: ${body} ${serialisedTags}`, {
-			bbcodeParser,
+			bbcodeParser: BBCODE_PARSER,
 			context: {},
 			validMarkup: [],
 		})
