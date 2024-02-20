@@ -1,6 +1,5 @@
 // Module imports
 import { expect } from 'chai'
-import { fake } from 'sinon'
 
 
 
@@ -8,6 +7,7 @@ import { fake } from 'sinon'
 
 // Local imports
 import { mapTag } from '../../src/index.js'
+import { Tag } from '../../src/structures/Tag.js'
 
 
 
@@ -19,11 +19,10 @@ describe('mapTag', function() {
 
 		const mappedTag = mapTag(tag)
 
-		expect(mappedTag).to.deep.equal({
-			key: 'tagKey',
-			value: undefined,
-			original: `#${tag}`,
-		})
+		expect(mappedTag).to.be.instanceOf(Tag)
+		expect(mappedTag.original).to.equal(`#${tag}`)
+		expect(mappedTag.key).to.equal(tag)
+		expect(mappedTag.value).to.be.undefined
 	})
 
 	it('parses a tag with a value', function() {
@@ -33,10 +32,9 @@ describe('mapTag', function() {
 
 		const mappedTag = mapTag(tag)
 
-		expect(mappedTag).to.deep.equal({
-			key: tagKey,
-			value: tagValue,
-			original: `#${tag}`,
-		})
+		expect(mappedTag).to.be.instanceOf(Tag)
+		expect(mappedTag.original).to.equal(`#${tag}`)
+		expect(mappedTag.key).to.equal(tagKey)
+		expect(mappedTag.value).to.equal(tagValue)
 	})
 })

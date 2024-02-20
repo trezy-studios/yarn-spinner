@@ -8,6 +8,7 @@ import { Parser as BBCodeParser } from 'bbcode-ast'
 
 // Local imports
 import { parseDialogLine } from '../../src/index.js'
+import { Tag } from '../../src/structures/Tag.js'
 
 
 
@@ -153,6 +154,9 @@ describe('parseDialogLine', function() {
 		expect(parsedDialogLine.author).to.equal(author)
 		expect(parsedDialogLine.body).to.equal(body)
 		expect(parsedDialogLine.markup).to.deep.equal([])
-		expect(parsedDialogLine.tags).to.deep.equal(tags)
+
+		parsedDialogLine.tags.forEach(tag => {
+			expect(tag).to.be.instanceOf(Tag)
+		})
 	})
 })

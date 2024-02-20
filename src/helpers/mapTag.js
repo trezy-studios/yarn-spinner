@@ -1,15 +1,16 @@
+// Local imports
+import { Tag } from '../structures/Tag.js'
+
+
+
+
+
 /**
  * Maps a tag string into a tag object.
  *
  * @param {string} tagString The original tag string.
- * @returns {import('../types/DialogLineTag.js').DialogLineTag} The parsed tag data.
+ * @returns {Tag} The parsed tag.
  */
 export function mapTag(tagString) {
-	const [key, value] = tagString.split(':')
-
-	return {
-		key,
-		value,
-		original: `#${tagString}`,
-	}
+	return new Tag(tagString)
 }
