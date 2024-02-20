@@ -1,5 +1,6 @@
 // Local imports
 import { log } from './log.js'
+import { Markup } from '../structures/Markup.js'
 
 
 
@@ -40,7 +41,6 @@ export function traverseBBCodeAST(ast, validMarkup, context) {
 					position: context.content.length,
 					type: ast.name,
 				}
-				context.markup.push(markupData)
 			} else {
 				log('info', `Unrecognised AST node: ${ast.name}`, ast)
 			}
@@ -52,8 +52,9 @@ export function traverseBBCodeAST(ast, validMarkup, context) {
 		})
 	}
 
-	if (ast.name === 'action') {
+	if (markupData) {
 		markupData.length = context.content.length - markupData.position
+		context.markup.push(new Markup(markupData.length, markupData.position, markupData.type))
 	}
 
 	return context

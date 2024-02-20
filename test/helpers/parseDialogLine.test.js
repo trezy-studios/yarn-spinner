@@ -7,6 +7,7 @@ import { Parser as BBCodeParser } from 'bbcode-ast'
 
 
 // Local imports
+import { Markup } from '../../src/structures/Markup.js'
 import { parseDialogLine } from '../../src/index.js'
 import { Tag } from '../../src/structures/Tag.js'
 
@@ -76,14 +77,16 @@ describe('parseDialogLine', function() {
 		expect(parsedDialogLine).to.have.own.property('ast')
 		expect(parsedDialogLine.author).to.equal(author)
 		expect(parsedDialogLine.body).to.equal(bodyWithoutMarkup)
-		expect(parsedDialogLine.markup).to.deep.equal([
-			{
-				length: 4,
-				position: 17,
-				type: 'bold',
-			},
-		])
 		expect(parsedDialogLine.tags).to.deep.equal([])
+
+		parsedDialogLine.markup.forEach(markup => {
+			expect(markup).to.be.instanceOf(Markup)
+		})
+
+		expect(parsedDialogLine.markup[0]).to.be.instanceOf(Markup)
+		expect(parsedDialogLine.markup[0].length).to.equal(4)
+		expect(parsedDialogLine.markup[0].position).to.equal(17)
+		expect(parsedDialogLine.markup[0].type).to.equal('bold')
 	})
 
 	it('parses a line of dialog with multiple markup instances', function() {
@@ -103,19 +106,21 @@ describe('parseDialogLine', function() {
 		expect(parsedDialogLine).to.have.own.property('ast')
 		expect(parsedDialogLine.author).to.equal(author)
 		expect(parsedDialogLine.body).to.equal(bodyWithoutMarkup)
-		expect(parsedDialogLine.markup).to.deep.equal([
-			{
-				length: 4,
-				position: 17,
-				type: 'bold',
-			},
-			{
-				length: 3,
-				position: 22,
-				type: 'italic',
-			},
-		])
 		expect(parsedDialogLine.tags).to.deep.equal([])
+
+		parsedDialogLine.markup.forEach(markup => {
+			expect(markup).to.be.instanceOf(Markup)
+		})
+
+		expect(parsedDialogLine.markup[0]).to.be.instanceOf(Markup)
+		expect(parsedDialogLine.markup[0].length).to.equal(4)
+		expect(parsedDialogLine.markup[0].position).to.equal(17)
+		expect(parsedDialogLine.markup[0].type).to.equal('bold')
+
+		expect(parsedDialogLine.markup[1]).to.be.instanceOf(Markup)
+		expect(parsedDialogLine.markup[1].length).to.equal(3)
+		expect(parsedDialogLine.markup[1].position).to.equal(22)
+		expect(parsedDialogLine.markup[1].type).to.equal('italic')
 	})
 
 	it('parses a line of dialog with tags', function() {
