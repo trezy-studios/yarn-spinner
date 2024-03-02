@@ -1,5 +1,5 @@
 {
-  "name": "yarn-spinner-xstate",
+  "name": "yarn-spinner",
   "version": "0.0.0-development",
   "main": "./src/index.js",
   "license": "BSD-3-Clause",
@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/trezy-studios/yarn-spinner-xstate.git"
+    "url": "https://github.com/trezy-studios/yarn-spinner.git"
   },
   "scripts": {
     "generateTypes": "tsc",
