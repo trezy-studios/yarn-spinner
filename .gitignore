@@ -1,6 +1,6 @@
 # Types
 types
-!src/types
+!packages/*/src/types
 
 # Logs
 logs

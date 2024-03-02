@@ -1,60 +1,7 @@
 {
-  "name": "yarn-spinner",
-  "version": "0.0.0-development",
-  "main": "./src/index.js",
-  "license": "BSD-3-Clause",
-  "type": "module",
-  "author": {
-    "name": "Trezy",
-    "email": "t@trezy.com",
-    "url": "http://trezy.codes"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/trezy-studios/yarn-spinner.git"
-  },
-  "scripts": {
-    "generateTypes": "tsc",
-    "lint": "eslint --ext .js .",
-    "semantic-release": "semantic-release",
-    "test": "mocha",
-    "testWithCoverage": "c8 mocha"
-  },
-  "files": [
-    "src/**/*",
-    "CODE_OF_CONDUCT.md",
-    "tsconfig.json",
-    "types/**/*"
+  "private": true,
+  "workspaces": [
+    "packages/yarn-spinner"
   ],
-  "types": "./types",
-  "devDependencies": {
-    "@trezy-studios/eslint-config": "^1.0.6",
-    "@types/chai": "^4.3.12",
-    "@types/mocha": "^10.0.6",
-    "@types/node": "^20.11.24",
-    "@types/sinon": "^17.0.3",
-    "@types/uuid": "^9.0.8",
-    "@types/uuid-validate": "^0.0.3",
-    "@typescript-eslint/eslint-plugin": "^7.1.0",
-    "@typescript-eslint/parser": "^7.1.0",
-    "c8": "^9.1.0",
-    "chai": "^5.1.0",
-    "coveralls": "^3.1.1",
-    "eslint": "^8.57.0",
-    "eslint-plugin-editorconfig": "^4.0.3",
-    "eslint-plugin-import": "^2.29.1",
-    "eslint-plugin-jsdoc": "^48.2.0",
-    "eslint-plugin-mocha": "^10.3.0",
-    "eslint-plugin-optimize-regex": "^1.2.1",
-    "eslint-plugin-promise": "^6.1.1",
-    "eslint-plugin-security": "^2.1.1",
-    "eslint-plugin-sort-class-members": "^1.20.0",
-    "eslint-plugin-unused-imports": "^3.1.0",
-    "mocha": "^10.3.0",
-    "semantic-release": "^22.0.12",
-    "sinon": "^17.0.1",
-    "typescript": "^5.3.3",
-    "uuid-validate": "^0.0.3"
-  },
   "packageManager": "yarn@4.0.1"
 }

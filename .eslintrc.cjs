@@ -8,7 +8,7 @@ module.exports = {
 	],
 	overrides: [
 		{
-			files: ['test/**/*.test.js'],
+			files: ['**/*.test.js'],
 			rules: {
 				'no-unused-expressions': ['off'],
 			},
