@@ -105,6 +105,7 @@ export class Node {
 	 * Builds a linked tree from this node's lines.
 	 */
 	#buildTree() {
+		/** @type {{ [key: string]: Line }} */
 		const indentationTracker = {}
 
 		const lines = Array.from(this.#lines.values())

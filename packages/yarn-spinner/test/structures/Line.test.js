@@ -89,7 +89,7 @@ describe('Line', function() {
 	it('parses a complex line', function() {
 		const line = new Line('Bob Bergenstein: Oh... <<wait 100>> Hi there, {$playerName}! I\'d [bold]love[/bold] to get your take on \\<< versus \\{$blep}.', 'nodeID')
 
-		expect(line.character.name).to.equal('Bob Bergenstein')
+		expect(line.character?.name).to.equal('Bob Bergenstein')
 
 		const segments = line.segments.values()
 

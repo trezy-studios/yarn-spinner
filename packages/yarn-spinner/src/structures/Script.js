@@ -79,7 +79,7 @@ export class Script {
 	 * Retrieves the next line.
 	 *
 	 * @param {string | import('./Line.js').Line} [lineOrLineID] Either a Line or a Line ID from which to determine the next line to be returned.
-	 * @returns {import('./Line.js').Line} The next line to be rendered.
+	 * @returns {import('./Line.js').Line | undefined} The next line to be rendered.
 	 */
 	getNextLine(lineOrLineID) {
 		if (!lineOrLineID) {
@@ -89,7 +89,7 @@ export class Script {
 		let line = lineOrLineID
 
 		if (typeof line === 'string') {
-			line = Line.getByID(/** @type {string} */ (lineOrLineID))
+			line = /** @type {Line} */ (Line.getByID(/** @type {string} */ (lineOrLineID)))
 		}
 
 		return line.nextSibling

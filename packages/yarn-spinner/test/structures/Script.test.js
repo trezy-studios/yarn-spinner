@@ -6,9 +6,16 @@ import { expect } from 'chai'
 
 
 // Local imports
-import {
-	Script,
-} from '../../src/index.js'
+import { Script } from '../../src/index.js'
+
+
+
+
+
+// Types
+/**
+ * @typedef {import('../../src/structures/Line.js').Line} Line
+ */
 
 
 
@@ -75,10 +82,11 @@ describe('Script', function() {
 			'-> Option 3',
 		]
 
+		/** @type {Line} */
 		let currentLine
 
 		lines.forEach(line => {
-			currentLine = script.getNextLine(currentLine)
+			currentLine = /** @type {Line} */ (script.getNextLine(currentLine))
 			expect(currentLine).to.have.property('original', line)
 		})
 	})
@@ -107,10 +115,11 @@ describe('Script', function() {
 			'-> Option 3',
 		]
 
+		/** @type {string} */
 		let currentLineID
 
 		lines.forEach(line => {
-			const currentLine = script.getNextLine(currentLineID)
+			const currentLine = /** @type {Line} */ (script.getNextLine(currentLineID))
 			currentLineID = currentLine.id
 			expect(currentLine).to.have.property('original', line)
 		})

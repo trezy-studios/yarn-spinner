@@ -16,9 +16,8 @@ export function log(type, ...args) {
 		return
 	}
 
-	// console.log(type, args)
-
 	if (type in state.logger) {
+		// @ts-expect-error We're already handling arbitrary and non-existent methods with this conditional.
 		state.logger[type](...args)
 	} else {
 		state.logger.log(type, ...args)
