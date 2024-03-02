@@ -16,6 +16,8 @@ export function log(type, ...args) {
 		return
 	}
 
+	// console.log(type, args)
+
 	if (type in state.logger) {
 		state.logger[type](...args)
 	} else {

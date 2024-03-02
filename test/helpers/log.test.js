@@ -21,16 +21,23 @@ const TEST_MESSAGE = 'message!'
 
 
 
+// Constants
+const globalLogOriginal = global.console.log
+
+
+
+
+
 // Variables
+/** @type {import('sinon').SinonSpy} */
 let globalLogFake
-let globalLogOriginal = global.console.log
 
 
 
 
 
 describe('log', function() {
-	before(function() {
+	beforeEach(function() {
 		globalLogFake = fake()
 		global.console.log = globalLogFake
 	})
@@ -49,6 +56,14 @@ describe('log', function() {
 		enableDebugging()
 
 		log('log', TEST_MESSAGE)
+
+		expect(globalLogFake.calledOnce).to.be.true
+	})
+
+	it('falls back to using the `log` method if an invalid log type is provided', function() {
+		enableDebugging()
+
+		log('florglspern', TEST_MESSAGE)
 
 		expect(globalLogFake.calledOnce).to.be.true
 	})

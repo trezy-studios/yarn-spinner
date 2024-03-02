@@ -19,7 +19,7 @@ export class Tag {
 	/** @type {string} */
 	#original
 
-	/** @type {string | number | boolean} */
+	/** @type {import('../types/Value.js').Value | undefined} */
 	#value
 
 
@@ -36,17 +36,17 @@ export class Tag {
 	 * @param {string} tagString The original tag.
 	 */
 	constructor(tagString) {
+		this.#original = tagString
+
 		const [key, value] = tagString
 			.trim()
-			.replace(/^#/, '')
+			.replace(/^#/u, '')
 			.split(':')
 
 		this.#key = key
-		this.#original = `#${key}`
 
 		if (typeof value !== 'undefined') {
 			this.#value = parseValue(value)
-			this.#original += `:${value}`
 		}
 	}
 
@@ -68,7 +68,7 @@ export class Tag {
 		return this.#original
 	}
 
-	/** @returns {string | number | boolean} The value of the tag. */
+	/** @returns {import('../types/Value.js').Value | undefined} The value of the tag. */
 	get value() {
 		return this.#value
 	}

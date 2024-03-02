@@ -1,17 +1,19 @@
 /**
  * Parses a string value into an appropriate type.
  *
- * @param {string} parameter
- * @returns {number | boolean | string}
+ * @param {string} parameterString The initial string to be parsed to a value.
+ * @returns {import('../types/Value.js').Value} The parsed value.
  */
-export function parseValue(parameter) {
-	if (!isNaN(parseFloat(parameter))) {
-		return parseFloat(parameter)
+export function parseValue(parameterString) {
+	if (/^\d+$/u.test(parameterString)) {
+		return parseFloat(parameterString)
 	}
 
-	if (['false', 'true'].includes(parameter)) {
-		return Boolean(parameter)
+	if (parameterString === 'true') {
+		return true
+	} else if (parameterString === 'false') {
+		return false
 	}
 
-	return parameter
+	return parameterString
 }

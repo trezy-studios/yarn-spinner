@@ -16,6 +16,7 @@ import { state } from '../../src/helpers/state.js'
 
 
 // Functions
+// eslint-disable-next-line jsdoc/require-jsdoc
 function testLog() {
 	log('log', 'message!')
 }
@@ -24,9 +25,16 @@ function testLog() {
 
 
 
+// Constants
+const globalLogOriginal = global.console.log
+
+
+
+
+
 // Variables
+/** @type {import('sinon').SinonSpy} */
 let globalLogFake
-let globalLogOriginal = global.console.log
 
 
 
@@ -80,5 +88,12 @@ describe('enableDebugging', function() {
 
 		testLog()
 		expect(customLoggerFunction.calledOnce).to.be.true
+	})
+
+	it('throws an error if provided with an invalid logger', function() {
+		expect(() => {
+			// @ts-expect-error We're forcing an error here by passing and invalid logger for the sake of the test.
+			enableDebugging({})
+		}).to.throw('`logger` must be a function, instead received ')
 	})
 })
