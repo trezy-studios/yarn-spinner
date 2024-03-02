@@ -1,4 +1,4 @@
-name: Publish
+name: Test & Publish
 on:
   push:
     branches:
@@ -19,7 +19,7 @@ on:
       - LICENSE
 
 jobs:
-  release:
+  publish:
     runs-on: ubuntu-latest
 
     permissions:
@@ -28,29 +28,33 @@ jobs:
       pull-requests: write
       id-token: write
 
-  setup:
-    name: Setup
-    uses: ./.github/workflows/setup.yml
-    secrets: inherit
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-  test:
-    name: Test
-    uses: ./.github/workflows/test.yml
-    needs:
-      - setup
-    secrets: inherit
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'yarn'
+          cache-dependency-path: 'yarn.lock'
 
-  lint:
-    name: Lint
-    uses: ./.github/workflows/lint.yml
-    needs:
-      - setup
-    secrets: inherit
+      - name: Install Dependencies
+        run: yarn install
 
-  publish:
-    name: Publish
-    uses: ./.github/workflows/publish.yml
-    needs:
-      - lint
-      - test
-    secrets: inherit
+      - name: Lint
+        run: yarn workspace yarn-spinner run lint
+
+      - name: Test
+        run: yarn workspace yarn-spinner run test
+
+      - name: Generate types
+        run: yarn workspace yarn-spinner run generateTypes
+
+      - name: Publish
+        run: yarn workspace yarn-spinner run semantic-release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
