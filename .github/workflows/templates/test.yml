@@ -1,0 +1,10 @@
+on:
+  workflow_call:
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Test
+        run: yarn test

@@ -28,30 +28,30 @@ jobs:
       pull-requests: write
       id-token: write
 
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
-      - name: Retrieve additional tag data
-        run: git fetch --tags --force
+  setup:
+    name: Setup
+    uses: ./.github/workflows/templates/setup.yml
+    secrets: inherit
 
-      - name: Setup Node
-        uses: actions/setup-node@v3
-        with:
-          node-version-file: '.nvmrc'
-          cache: 'yarn'
-          cache-dependency-path: 'yarn.lock'
+  test:
+    name: Test
+    uses: ./.github/workflows/templates/test.yml
+    needs:
+      - setup
+    secrets: inherit
 
-      - name: Install Packages
-        run: yarn install
+  lint:
+    name: Lint
+    uses: ./.github/workflows/templates/lint.yml
+    needs:
+      - setup
+    secrets: inherit
 
-      - name: Generate types
-        run: yarn generateTypes
-
-      - name: Release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: npx semantic-release
+  publish:
+    name: Publish
+    uses: ./.github/workflows/templates/publish.yml
+    needs:
+      - lint
+      - test
+    secrets: inherit
