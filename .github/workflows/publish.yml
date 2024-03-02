@@ -28,29 +28,28 @@ jobs:
       pull-requests: write
       id-token: write
 
-
   setup:
     name: Setup
-    uses: ./.github/workflows/templates/setup.yml
+    uses: ./.github/workflows/setup.yml
     secrets: inherit
 
   test:
     name: Test
-    uses: ./.github/workflows/templates/test.yml
+    uses: ./.github/workflows/test.yml
     needs:
       - setup
     secrets: inherit
 
   lint:
     name: Lint
-    uses: ./.github/workflows/templates/lint.yml
+    uses: ./.github/workflows/lint.yml
     needs:
       - setup
     secrets: inherit
 
   publish:
     name: Publish
-    uses: ./.github/workflows/templates/publish.yml
+    uses: ./.github/workflows/publish.yml
     needs:
       - lint
       - test
